@@ -275,7 +275,7 @@ var PgDriver = Base.extend({
         function (result) {
           if (result && result && result.length > 0 && result[0].version) {
             var version = result[0].version;
-            var match = version.match(/\d+\.\d+\.\d+/);
+            var match = semver.coerce(version.match(/\d+\.\d+(\.\d+)?/));
             if (match && match[0] && semver.gte(match[0], '9.1.0')) {
               options.ifNotExists = true;
             }
